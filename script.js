@@ -324,7 +324,7 @@ function finishBirthday() {
         ">
 
             <img
-                src="photo20.jpg
+                src="photo20.jpg"
                 alt="Final birthday memory"
                 style="
                     width: 100%;

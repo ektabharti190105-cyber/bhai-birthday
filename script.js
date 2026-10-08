@@ -237,7 +237,7 @@ function showPhoto() {
             emojiRain(60);
         }
     }, 8500);
-}
+
 }
 
 

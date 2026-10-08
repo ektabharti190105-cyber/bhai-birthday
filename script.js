@@ -221,7 +221,7 @@ function showPhoto() {
         document.createElement("img");
 
     image.src =
-        "assets/" + photos[currentPhoto].file;
+    photos[currentPhoto].file;
 
     image.alt =
         "Birthday memory " + (currentPhoto + 1);

@@ -195,85 +195,49 @@ function startMemories() {
 
 
 /* Show photos 1–19 */
+/* Show photos 1–19 */
 function showPhoto() {
-
-    const stage =
-        document.getElementById("memoryStage");
-
-    const number =
-        document.getElementById("photoNumber");
+    const stage = document.getElementById("memoryStage");
+    const number = document.getElementById("photoNumber");
 
     stage.innerHTML = "";
 
-    const card =
-        document.createElement("div");
-
+    const card = document.createElement("div");
     card.className = "memoryCard";
 
-
-    const tape =
-        document.createElement("div");
-
+    const tape = document.createElement("div");
     tape.className = "memoryTape";
 
+    const image = document.createElement("img");
+    image.src = "./" + photos[currentPhoto].file;
+    image.alt = "Birthday memory " + (currentPhoto + 1);
 
-    const image =
-        document.createElement("img");
-
-    image.src =
-    photos[currentPhoto].file;
-
-    image.alt =
-        "Birthday memory " + (currentPhoto + 1);
-
-
-    const caption =
-        document.createElement("div");
-
-    caption.className =
-        "memoryCaption";
-
-    caption.textContent =
-        photos[currentPhoto].caption;
-
+    const caption = document.createElement("div");
+    caption.className = "memoryCaption";
+    caption.textContent = photos[currentPhoto].caption;
 
     card.appendChild(tape);
-
     card.appendChild(image);
-
     card.appendChild(caption);
 
     stage.appendChild(card);
 
-
-    number.textContent =
-        `${currentPhoto + 1} / 19`;
-
+    number.textContent = `${currentPhoto + 1} / 19`;
 
     emojiRain(22);
 
-
     clearTimeout(memoryTimer);
 
-
     memoryTimer = setTimeout(() => {
-
         if (currentPhoto < 18) {
-
             currentPhoto++;
-
             showPhoto();
-
         } else {
-
-            document
-                .getElementById("letterButton")
-                .style.display = "block";
-
+            document.getElementById("letterButton").style.display = "block";
             emojiRain(60);
         }
-
     }, 8500);
+}
 }
 
 

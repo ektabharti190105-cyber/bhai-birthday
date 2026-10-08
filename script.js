@@ -20,7 +20,11 @@ const photos = [
     {file:"photo19.jpg",caption:"Mere bina tumhari life kitni boring hoti, soch lo! 😌😂❤️"},
     {file:"photo20.jpg",caption:"mera phone kho diya apne 😭😂 yh kabhi nhi bhulungi ❤️📱"}
 ];
-
+// Preload all photos
+photos.forEach(photo => {
+    const img = new Image();
+    img.src = "./" + photo.file;
+});
 const emojis = [
     "🌸","🌹","💐","❤️","💖","💕","✨","⭐","🌟",
     "🎈","🎀","🦋","🥳","🎉","🎊","🤎","🫶","😂",

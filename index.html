@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Bhaiya 🤎</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="emojiRain"></div>
+
+    <!-- OPENING -->
+    <section id="opening" class="screen">
+        <div class="paper">
+            <div class="tiny">A little surprise for you...</div>
+            <h1>Open or not? 👀</h1>
+            <p>It's your birthday, Bhaiya! 🤎🎂</p>
+
+            <div class="buttons">
+                <button onclick="openBirthday()">OPEN ❤️</button>
+                <button onclick="dontOpen()">NO 😭</button>
+            </div>
+
+            <div id="noMessage"></div>
+        </div>
+    </section>
+
+
+    <!-- CAKE -->
+    <section id="cake" class="screen hidden">
+        <div class="cakeCard">
+            <div class="cakeEmoji">🎂</div>
+            <h1>Happy Birthday Bhaiya! 🥳</h1>
+            <p>Today is officially your day! 🤎✨</p>
+
+            <div class="cakeEmojis">
+                🎈 🎉 ✨ 🥳 🎊 💐 🎁 ❤️
+            </div>
+
+            <button onclick="startMemories()">Let's See Our Memories 📸</button>
+        </div>
+    </section>
+
+
+    <!-- MEMORIES -->
+    <section id="memories" class="screen hidden">
+        <div class="memoryHeader">
+            <span>OUR MEMORIES 🤎</span>
+            <small id="photoNumber">1 / 20</small>
+        </div>
+
+        <div id="memoryStage"></div>
+
+        <button id="letterButton" onclick="showLetter()">
+            Read My Letter 💌
+        </button>
+    </section>
+
+
+    <!-- LETTER -->
+    <section id="letter" class="screen hidden">
+        <div class="letterPaper">
+
+            <h1>For My Bhaiya ❤️</h1>
+
+            <p>
+                Heyyy Kuchupuchu 🙈 Wish you a super duper Happy Birthday! 🎂✨🎈
+            </p>
+
+            <p>
+                I know I annoy you a lot 😜, but that's just part of my job as your sister! 🙋‍♀️
+                On a serious note, I care for you deeply. 🥺💕 I never want you to face any
+                trouble in the future, which is why I want you to focus, study hard 📚🚀,
+                and not waste your precious time hanging around aimlessly in friend circles 🙅‍♀️👥.
+            </p>
+
+            <p>
+                Please understand, when I tell you not to do something, just don't do it! 🛑
+                I only say it because I want you to succeed in life 🌟⏳. Right now it might
+                feel like I'm forcing you 🤪, but trust me, you will understand why later 💭💖.
+            </p>
+
+            <p>
+                No matter how much we fight 🥊💥, you'll always be my brother 🫂, and I'll
+                always have your back 💕. Have an amazing day! 🎉🥳
+            </p>
+
+            <p>
+                Love you so much, 👨‍👧‍👦
+            </p>
+
+            <h2>Your Billu ✨🐾</h2>
+
+            <button onclick="finishBirthday()">One Last Thing 😭😂</button>
+        </div>
+    </section>
+
+
+    <!-- FINAL -->
+    <section id="final" class="screen hidden">
+        <div class="finalCard">
+            <div class="finalEmoji">🥹🤎</div>
+
+            <h1>That's all, Bhaiya!</h1>
+
+            <p>
+                Thank you for being the annoying,
+                protective and irreplaceable brother you are. 😂🫂
+            </p>
+
+            <div class="bigBirthday">
+                HAPPY BIRTHDAY! 🎂🎉
+            </div>
+
+            <div class="finalRain">
+                🌸 ❤️ ✨ 🦋 🎈 🥳 💐 🤎 🎊
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SONG -->
+   <audio id="birthdaySong" loop preload="auto">
+    <source src="assets/birthday-song.mp3" type="audio/mpeg">
+</audio>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

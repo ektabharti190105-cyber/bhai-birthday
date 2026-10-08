@@ -1,0 +1,505 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(circle at top, #8b5e3c 0%, #4b2e1f 45%, #24150f 100%);
+    color: #fff8ef;
+    overflow: hidden;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   OPENING
+========================= */
+
+.paper {
+    width: min(90%, 650px);
+    padding: 55px 30px;
+    text-align: center;
+    background: rgba(73, 42, 27, 0.92);
+    border: 2px solid rgba(255, 225, 190, 0.5);
+    border-radius: 25px;
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        inset 0 0 35px rgba(255, 220, 180, 0.08);
+    animation: appear 1.2s ease;
+}
+
+.tiny {
+    font-size: 14px;
+    letter-spacing: 3px;
+    opacity: 0.8;
+    margin-bottom: 18px;
+}
+
+.paper h1 {
+    font-size: clamp(38px, 7vw, 65px);
+    margin-bottom: 18px;
+}
+
+.paper p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.buttons button,
+.cakeCard button,
+#letterButton,
+.letterPaper button {
+    padding: 14px 28px;
+    border-radius: 50px;
+    background: #f3d0a5;
+    color: #422719;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.buttons button:hover,
+.cakeCard button:hover,
+#letterButton:hover,
+.letterPaper button:hover {
+    transform: scale(1.08);
+    background: #fff0d8;
+}
+
+#noMessage {
+    margin-top: 20px;
+    min-height: 25px;
+    font-size: 18px;
+}
+
+
+/* =========================
+   CAKE
+========================= */
+
+.cakeCard {
+    text-align: center;
+    width: min(90%, 700px);
+    padding: 45px 25px;
+    background: rgba(71, 41, 27, 0.94);
+    border-radius: 30px;
+    border: 2px solid rgba(255, 220, 180, 0.4);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    animation: cakeAppear 1s ease;
+}
+
+.cakeEmoji {
+    font-size: clamp(90px, 18vw, 160px);
+    animation: cakeBounce 1.3s infinite alternate ease-in-out;
+}
+
+.cakeCard h1 {
+    font-size: clamp(32px, 6vw, 55px);
+    margin: 15px 0;
+}
+
+.cakeCard p {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.cakeEmojis {
+    font-size: 32px;
+    line-height: 2;
+    margin-bottom: 25px;
+    animation: sparkle 2s infinite;
+}
+
+
+/* =========================
+   MEMORY SECTION
+========================= */
+
+.memoryHeader {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    z-index: 20;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.memoryHeader small {
+    opacity: 0.75;
+}
+
+#memoryStage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.memoryCard {
+    position: absolute;
+    width: min(78vw, 430px);
+    padding: 15px 15px 25px;
+    background: #fff8ed;
+    color: #4a2b1d;
+    border-radius: 5px;
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55),
+        0 5px 15px rgba(0,0,0,0.25);
+
+    animation: memoryMove 5.5s linear forwards;
+}
+
+.memoryCard img {
+    width: 100%;
+    height: min(55vh, 430px);
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+}
+
+.memoryCaption {
+    text-align: center;
+    font-size: clamp(16px, 3vw, 21px);
+    font-weight: bold;
+    padding: 18px 8px 0;
+    line-height: 1.4;
+}
+
+.memoryTape {
+    position: absolute;
+    width: 90px;
+    height: 24px;
+    background: rgba(222, 183, 130, 0.7);
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+#letterButton {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    display: none;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letterPaper {
+    width: min(90%, 760px);
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 40px 35px;
+    background:
+        linear-gradient(rgba(255,248,230,0.97), rgba(245,224,190,0.97));
+    color: #4a2b1d;
+    border-radius: 12px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    animation: letterAppear 1s ease;
+}
+
+.letterPaper h1 {
+    text-align: center;
+    font-size: clamp(32px, 6vw, 50px);
+    margin-bottom: 25px;
+}
+
+.letterPaper p {
+    font-size: 18px;
+    line-height: 1.75;
+    margin-bottom: 18px;
+}
+
+.letterPaper h2 {
+    text-align: right;
+    margin: 25px 5px;
+    font-size: 25px;
+}
+
+.letterPaper button {
+    display: block;
+    margin: 15px auto 0;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.finalCard {
+    width: min(90%, 700px);
+    padding: 55px 30px;
+    text-align: center;
+    background: rgba(73,42,27,0.94);
+    border: 2px solid rgba(255,225,190,0.4);
+    border-radius: 30px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    animation: appear 1.2s ease;
+}
+
+.finalEmoji {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+.finalCard h1 {
+    font-size: clamp(35px, 7vw, 60px);
+    margin-bottom: 20px;
+}
+
+.finalCard p {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.bigBirthday {
+    margin-top: 30px;
+    font-size: clamp(28px, 6vw, 50px);
+    font-weight: bold;
+}
+
+.finalRain {
+    margin-top: 25px;
+    font-size: 32px;
+    word-spacing: 10px;
+}
+
+
+/* =========================
+   EMOJI RAIN
+========================= */
+
+#emojiRain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.fallingEmoji {
+    position: absolute;
+    top: -60px;
+    animation: fall linear forwards;
+    user-select: none;
+    pointer-events: none;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes cakeAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes cakeBounce {
+    from {
+        transform: translateY(0) rotate(-3deg);
+    }
+    to {
+        transform: translateY(-15px) rotate(3deg);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes memoryMove {
+    0% {
+        transform:
+            translateX(115vw)
+            rotate(8deg)
+            scale(0.8);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    35% {
+        transform:
+            translateX(20vw)
+            rotate(-4deg)
+            scale(1);
+    }
+
+    55% {
+        transform:
+            translateX(0)
+            rotate(3deg)
+            scale(1.05);
+    }
+
+    75% {
+        transform:
+            translateX(-30vw)
+            rotate(-5deg)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            translateX(-120vw)
+            rotate(8deg)
+            scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes letterAppear {
+    from {
+        opacity: 0;
+        transform: translateY(60px) rotate(2deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@keyframes fall {
+    from {
+        transform:
+            translateY(-80px)
+            translateX(0)
+            rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform:
+            translateY(50vh)
+            translateX(40px)
+            rotate(180deg);
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(-40px)
+            rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .paper {
+        padding: 40px 20px;
+    }
+
+    .paper h1 {
+        font-size: 38px;
+    }
+
+    .paper p {
+        font-size: 17px;
+    }
+
+    .memoryCard {
+        width: 82vw;
+        padding: 11px 11px 20px;
+    }
+
+    .memoryCard img {
+        height: 48vh;
+    }
+
+    .memoryCaption {
+        font-size: 16px;
+        padding-top: 13px;
+    }
+
+    .letterPaper {
+        padding: 30px 22px;
+        max-height: 84vh;
+    }
+
+    .letterPaper p {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .cakeEmojis {
+        font-size: 25px;
+    }
+}

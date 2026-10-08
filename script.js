@@ -31,7 +31,8 @@ let currentPhoto = 0;
 let memoryTimer;
 let emojiInterval;
 
-/* Make photos stay in the center longer */
+
+/* Slow photo animation */
 const slowMemoryStyle = document.createElement("style");
 
 slowMemoryStyle.innerHTML = `
@@ -83,6 +84,8 @@ function emojiRain(amount = 25) {
 
     const container = document.getElementById("emojiRain");
 
+    if (!container) return;
+
     for (let i = 0; i < amount; i++) {
 
         const emoji = document.createElement("div");
@@ -122,32 +125,21 @@ function openBirthday() {
         song.volume = 1;
         song.currentTime = 0;
 
-        song.load();
-
-        const playPromise = song.play();
-
-        if (playPromise !== undefined) {
-
-            playPromise.catch((error) => {
-
-                console.log("Audio error:", error);
-
-                alert(
-                    "Song could not play. Please check that birthday-song.mp3 is inside the assets folder."
-                );
-
-            });
-
-        }
+        song.play().catch(error => {
+            console.log("Song autoplay blocked:", error);
+        });
     }
 
-    document
-        .getElementById("opening")
-        .classList.add("hidden");
+    const opening = document.getElementById("opening");
+    const cake = document.getElementById("cake");
 
-    document
-        .getElementById("cake")
-        .classList.remove("hidden");
+    if (opening) {
+        opening.classList.add("hidden");
+    }
+
+    if (cake) {
+        cake.classList.remove("hidden");
+    }
 
     emojiRain(70);
 
@@ -164,8 +156,11 @@ function dontOpen() {
 
     const message = document.getElementById("noMessage");
 
-    message.innerHTML =
-        "Areee 😭💔 You really chose NO?! Try again, Bhaiya! 😂";
+    if (message) {
+
+        message.innerHTML =
+            "Areee 😭💔 You really chose NO?! Try again, Bhaiya! 😂";
+    }
 
     emojiRain(35);
 }
@@ -174,17 +169,21 @@ function dontOpen() {
 /* Start memories */
 function startMemories() {
 
-    document
-        .getElementById("cake")
-        .classList.add("hidden");
+    const cake = document.getElementById("cake");
+    const memories = document.getElementById("memories");
+    const letterButton = document.getElementById("letterButton");
 
-    document
-        .getElementById("memories")
-        .classList.remove("hidden");
+    if (cake) {
+        cake.classList.add("hidden");
+    }
 
-    document
-        .getElementById("letterButton")
-        .style.display = "none";
+    if (memories) {
+        memories.classList.remove("hidden");
+    }
+
+    if (letterButton) {
+        letterButton.style.display = "none";
+    }
 
     currentPhoto = 0;
 
@@ -195,10 +194,12 @@ function startMemories() {
 
 
 /* Show photos 1–19 */
-/* Show photos 1–19 */
 function showPhoto() {
+
     const stage = document.getElementById("memoryStage");
     const number = document.getElementById("photoNumber");
+
+    if (!stage || !number) return;
 
     stage.innerHTML = "";
 
@@ -209,12 +210,18 @@ function showPhoto() {
     tape.className = "memoryTape";
 
     const image = document.createElement("img");
+
     image.src = "./" + photos[currentPhoto].file;
-    image.alt = "Birthday memory " + (currentPhoto + 1);
+
+    image.alt =
+        "Birthday memory " + (currentPhoto + 1);
 
     const caption = document.createElement("div");
+
     caption.className = "memoryCaption";
-    caption.textContent = photos[currentPhoto].caption;
+
+    caption.textContent =
+        photos[currentPhoto].caption;
 
     card.appendChild(tape);
     card.appendChild(image);
@@ -222,22 +229,34 @@ function showPhoto() {
 
     stage.appendChild(card);
 
-    number.textContent = `${currentPhoto + 1} / 19`;
+    number.textContent =
+        `${currentPhoto + 1} / 19`;
 
     emojiRain(22);
 
     clearTimeout(memoryTimer);
 
     memoryTimer = setTimeout(() => {
+
         if (currentPhoto < 18) {
+
             currentPhoto++;
+
             showPhoto();
+
         } else {
-            document.getElementById("letterButton").style.display = "block";
+
+            const letterButton =
+                document.getElementById("letterButton");
+
+            if (letterButton) {
+                letterButton.style.display = "block";
+            }
+
             emojiRain(60);
         }
-    }, 8500);
 
+    }, 8500);
 }
 
 
@@ -246,13 +265,19 @@ function showLetter() {
 
     clearTimeout(memoryTimer);
 
-    document
-        .getElementById("memories")
-        .classList.add("hidden");
+    const memories =
+        document.getElementById("memories");
 
-    document
-        .getElementById("letter")
-        .classList.remove("hidden");
+    const letter =
+        document.getElementById("letter");
+
+    if (memories) {
+        memories.classList.add("hidden");
+    }
+
+    if (letter) {
+        letter.classList.remove("hidden");
+    }
 
     emojiRain(50);
 }
@@ -261,16 +286,22 @@ function showLetter() {
 /* Final screen with PHOTO 20 */
 function finishBirthday() {
 
-    document
-        .getElementById("letter")
-        .classList.add("hidden");
+    const letter =
+        document.getElementById("letter");
 
     const final =
         document.getElementById("final");
 
+    if (letter) {
+        letter.classList.add("hidden");
+    }
+
+    if (!final) return;
+
     const finalCard =
         final.querySelector(".finalCard");
 
+    if (!finalCard) return;
 
     finalCard.innerHTML = `
 
@@ -324,7 +355,6 @@ function finishBirthday() {
         </div>
 
     `;
-
 
     final.classList.remove("hidden");
 
